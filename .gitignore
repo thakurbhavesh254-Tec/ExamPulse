@@ -1,0 +1,39 @@
+# Node / React dependencies & build outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+package-lock.json
+
+# Java / Maven outputs
+backend/target/
+backend/.mvn/
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment secrets
+.env
+.env.production
+.env.development
+.env.local
+
+# IDE & OS files
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.DS_Store
+Thumbs.db
