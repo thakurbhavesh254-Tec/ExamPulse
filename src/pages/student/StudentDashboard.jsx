@@ -46,10 +46,11 @@ export const StudentDashboard = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
+        const studentId = user?.id || user?.studentId || 'std-53';
         const [examsData, attemptsData, analyticsData, leaderboardData] = await Promise.all([
           examService.getExams(),
-          resultService.getStudentAttempts(user?.id || 'std-53'),
-          analyticsService.getStudentAnalytics(user?.id || 'std-53'),
+          resultService.getStudentAttempts(studentId),
+          analyticsService.getStudentAnalytics(studentId),
           analyticsService.getLeaderboard()
         ]);
         setExams(examsData);
@@ -78,7 +79,7 @@ export const StudentDashboard = () => {
   const availableExams = exams.filter((e) => e.status === 'Published');
   const avgScore = attempts.length > 0
     ? (attempts.reduce((acc, curr) => acc + (curr.percentage || 0), 0) / attempts.length).toFixed(1)
-    : '96.4';
+    : '0.0';
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -89,11 +90,11 @@ export const StudentDashboard = () => {
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold mb-4 border border-indigo-500/30">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Academic Semester Active &bull; Roll: {user?.rollNo || '53'}</span>
+            <span>Academic Semester Active &bull; Roll: {user?.rollNo || user?.studentId || 'N/A'}</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-            Welcome back, {user?.name?.split(' ')[0] || 'Bhavesh'}!
+            Welcome back, {user?.name ? user.name.split(' ')[0] : 'Student'}!
           </h1>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
             You are enrolled in <span className="text-white font-medium">{user?.department || 'Department of Information Technology'}</span>. 

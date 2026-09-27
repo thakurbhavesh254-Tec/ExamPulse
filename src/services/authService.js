@@ -58,9 +58,50 @@ export const authService = {
     // DEMO mode with mock delay
     await simulateDelay(250);
 
-    const user = role === 'admin' 
-      ? { ...CURRENT_ADMIN, email } 
-      : { ...CURRENT_STUDENT, email, avatar: null };
+    let user;
+    if (role === 'admin') {
+      user = { ...CURRENT_ADMIN, email };
+    } else {
+      // Search stored and initial mock students for matching email/rollNo
+      const storedStudents = getItem(STORAGE_KEYS.STUDENTS) || [];
+      const allStudents = [...storedStudents, ...INITIAL_STUDENTS];
+      const matched = allStudents.find(s => 
+        s.email?.toLowerCase() === email.toLowerCase() || 
+        String(s.rollNo) === String(email) ||
+        String(s.id) === String(email)
+      );
+
+      if (matched) {
+        user = {
+          id: matched.id,
+          name: matched.name,
+          rollNo: matched.rollNo,
+          email: matched.email || email,
+          department: matched.department || 'Department of Information Technology',
+          semester: matched.semester || '6th Semester',
+          academicYear: '2025-2026',
+          institution: 'NHITM Engineering College',
+          avatar: matched.avatar || null,
+          role: 'student'
+        };
+      } else {
+        // Derive clean student details for custom email login
+        const namePart = email.split('@')[0].replace(/[._]/g, ' ');
+        const formattedName = namePart.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        user = {
+          id: `std-${Date.now().toString().slice(-4)}`,
+          name: formattedName || 'Student Candidate',
+          rollNo: `STD-${Math.floor(10 + Math.random() * 90)}`,
+          email: email,
+          department: 'Department of Information Technology',
+          semester: '6th Semester',
+          academicYear: '2025-2026',
+          institution: 'NHITM Engineering College',
+          avatar: null,
+          role: 'student'
+        };
+      }
+    }
 
     setItem(STORAGE_KEYS.CURRENT_ROLE, role);
     setItem(STORAGE_KEYS.CURRENT_USER, user);
@@ -194,6 +235,8 @@ export const authService = {
 
   async logout() {
     clearAuthToken();
+    setItem(STORAGE_KEYS.CURRENT_USER, null);
+    setItem(STORAGE_KEYS.CURRENT_ROLE, null);
     if (!isLiveMode()) {
       await simulateDelay(100);
     }

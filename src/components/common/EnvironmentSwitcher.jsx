@@ -33,7 +33,7 @@ export const EnvironmentSwitcher = ({ compact = false }) => {
     if (mode === environment) return;
     setEnvironment(mode);
     if (mode === ENVIRONMENTS.LIVE) {
-      toast.info('Switched to LIVE Mode (Connecting to Spring Boot REST API at http://localhost:8080)...');
+      toast.info(`Switched to LIVE Mode (Connecting to Spring Boot REST API at ${apiBaseUrl})...`);
     } else {
       toast.success('Switched to DEMO Mode (Using local mock data & candidate profiles).');
     }
@@ -92,7 +92,7 @@ export const EnvironmentSwitcher = ({ compact = false }) => {
             }`}
           >
             <span className={`w-2 h-2 rounded-full ${backendStatus === 'connected' ? 'bg-emerald-500 ring-2 ring-emerald-200' : 'bg-amber-500 ring-2 ring-amber-200 animate-ping'}`} />
-            <span>{backendStatus === 'connected' ? 'Live API (8080)' : 'Backend Offline'}</span>
+            <span>{backendStatus === 'connected' ? 'Live API' : 'Backend Offline'}</span>
             <ChevronDown className="w-3 h-3 opacity-60 ml-0.5" />
           </div>
 

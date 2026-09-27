@@ -38,7 +38,8 @@ export const StudentPerformance = () => {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const res = await analyticsService.getStudentAnalytics(user?.id || 'std-53');
+        const studentId = user?.id || user?.studentId;
+        const res = await analyticsService.getStudentAnalytics(studentId);
         setData(res);
       } catch (err) {
         console.error('Failed to load performance analytics', err);

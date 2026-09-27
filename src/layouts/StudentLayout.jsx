@@ -169,13 +169,13 @@ export const StudentLayout = () => {
                   onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                   className="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"
                 >
-                  <Avatar src={user?.avatar} name={user?.name || 'Bhavesh Thakur'} size="sm" />
+                  <Avatar src={user?.avatar} name={user?.name || 'Student User'} size="sm" />
                   <div className="text-left hidden sm:block">
                     <div className="text-xs font-bold text-slate-900 leading-tight">
-                      {user?.name || 'Bhavesh Thakur'}
+                      {user?.name || 'Student Candidate'}
                     </div>
                     <div className="text-[10px] text-slate-500 font-mono leading-tight">
-                      Roll #{user?.rollNo || '53'}
+                      Roll #{user?.rollNo || user?.studentId || 'N/A'}
                     </div>
                   </div>
                   <ChevronDown className="w-3.5 h-3.5 text-slate-400 hidden sm:block" />
@@ -188,7 +188,7 @@ export const StudentLayout = () => {
                     onMouseLeave={() => setProfileDropdownOpen(false)}
                   >
                     <div className="px-4 py-2.5 border-b border-slate-100">
-                      <p className="text-xs font-bold text-slate-900">{user?.name}</p>
+                      <p className="text-xs font-bold text-slate-900">{user?.name || 'Student Candidate'}</p>
                       <p className="text-[11px] text-slate-500 truncate">{user?.email}</p>
                       <span className="inline-block mt-1 text-[10px] font-semibold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">
                         {user?.department || 'Information Technology'}

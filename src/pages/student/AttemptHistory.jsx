@@ -22,7 +22,8 @@ export const AttemptHistory = () => {
   useEffect(() => {
     const fetchAttempts = async () => {
       try {
-        const data = await resultService.getStudentAttempts(user?.id || 'std-53');
+        const studentId = user?.id || user?.studentId;
+        const data = await resultService.getStudentAttempts(studentId);
         setAttempts(data);
       } catch (err) {
         console.error('Failed to load attempt history', err);

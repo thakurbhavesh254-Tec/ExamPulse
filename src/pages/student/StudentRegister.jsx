@@ -68,14 +68,14 @@ export const StudentRegister = () => {
 
     setIsLoading(true);
     try {
-      await register({
+      const res = await register({
         fullName: formData.fullName,
         email: formData.email,
         studentId: formData.studentId,
         department: formData.department,
         password: formData.password
       });
-      toast.success('Registration successful! Welcome to Apex Institute Assessment Portal.');
+      toast.success(`Registration successful! Welcome, ${res.user?.name || formData.fullName}.`);
       navigate('/student/dashboard');
     } catch (err) {
       toast.error(err.message || 'Failed to register account');

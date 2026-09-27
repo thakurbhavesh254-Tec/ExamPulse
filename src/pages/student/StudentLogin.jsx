@@ -42,8 +42,8 @@ export const StudentLogin = () => {
 
     setIsLoading(true);
     try {
-      await login({ email, password, role: 'student' });
-      toast.success('Welcome back, Bhavesh! Signed in successfully.');
+      const res = await login({ email, password, role: 'student' });
+      toast.success(`Welcome back, ${res.user?.name || 'Student'}! Signed in successfully.`);
       navigate('/student/dashboard');
     } catch (err) {
       toast.error(err.message || 'Authentication failed. Please verify credentials.');
@@ -52,11 +52,11 @@ export const StudentLogin = () => {
     }
   };
 
-  const handleFillDemo = () => {
-    setEmail('bhavesh.thakur@nhitm.ac.in');
+  const handleFillDemo = (demoEmail = 'bhavesh.thakur@nhitm.ac.in', name = 'Bhavesh Thakur') => {
+    setEmail(demoEmail);
     setPassword('ApexSecure@2026');
     setErrors({});
-    toast.info('Loaded demo student credentials (Bhavesh Thakur — Roll No. 53)');
+    toast.info(`Loaded student credentials for ${name}`);
   };
 
   return (
@@ -148,21 +148,42 @@ export const StudentLogin = () => {
               </p>
             </div>
 
-            {/* Demo Helper Banner */}
-            <div className="mb-6 p-3 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-between">
+            {/* Demo Helper Banner with Multi-Student Quick Fill */}
+            <div className="mb-6 p-3 bg-indigo-50/80 border border-indigo-100 rounded-xl space-y-2">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
-                <div className="text-xs text-indigo-900">
-                  <span className="font-semibold">Demo Account:</span> Bhavesh Thakur (Roll No. 53)
-                </div>
+                <span className="text-xs font-bold text-indigo-950">Quick Student Login Test Accounts:</span>
               </div>
-              <button
-                type="button"
-                onClick={handleFillDemo}
-                className="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 bg-white px-2 py-1 rounded shadow-2xs border border-indigo-200 cursor-pointer"
-              >
-                Auto-fill
-              </button>
+              <div className="flex flex-wrap gap-1.5 pt-0.5">
+                <button
+                  type="button"
+                  onClick={() => handleFillDemo('bhavesh.thakur@nhitm.ac.in', 'Bhavesh Thakur')}
+                  className="text-[11px] font-semibold text-indigo-700 hover:text-indigo-900 bg-white hover:bg-indigo-100 px-2 py-0.5 rounded border border-indigo-200 cursor-pointer shadow-2xs"
+                >
+                  Bhavesh (Roll #53)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleFillDemo('atharva.chavan@nhitm.ac.in', 'Atharva Chavan')}
+                  className="text-[11px] font-semibold text-indigo-700 hover:text-indigo-900 bg-white hover:bg-indigo-100 px-2 py-0.5 rounded border border-indigo-200 cursor-pointer shadow-2xs"
+                >
+                  Atharva (Roll #6)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleFillDemo('aditya.mhaisekar@nhitm.ac.in', 'Aditya Mhaisekar')}
+                  className="text-[11px] font-semibold text-indigo-700 hover:text-indigo-900 bg-white hover:bg-indigo-100 px-2 py-0.5 rounded border border-indigo-200 cursor-pointer shadow-2xs"
+                >
+                  Aditya (Roll #24)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleFillDemo('ananya.iyer@nhitm.ac.in', 'Ananya Iyer')}
+                  className="text-[11px] font-semibold text-indigo-700 hover:text-indigo-900 bg-white hover:bg-indigo-100 px-2 py-0.5 rounded border border-indigo-200 cursor-pointer shadow-2xs"
+                >
+                  Ananya (Roll #03)
+                </button>
+              </div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">

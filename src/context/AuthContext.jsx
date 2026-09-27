@@ -43,9 +43,8 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
     try {
       await authService.logout();
-      // Keep in student mode with default user or mock state
-      const refreshedUser = authService.getCurrentUser();
-      setUser(refreshedUser);
+      setUser(null);
+      setRole(null);
     } finally {
       setIsLoading(false);
     }
