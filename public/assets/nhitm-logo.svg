@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- Subtle Glow Effect -->
+  <defs>
+    <linearGradient id="nhitmGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Logo Emblem Crest Container -->
+  <g transform="translate(6, 6)" filter="url(#shadow)">
+    <!-- Crest Shield Background -->
+    <path d="M34 4C18 4 6 12 6 12V36C6 52 20 62 34 66C48 62 62 52 62 36V12C62 12 50 4 34 4Z" fill="url(#nhitmGradient)"/>
+    <!-- Gold Border Accent -->
+    <path d="M34 7C20.5 7 9.5 14 9.5 14V35C9.5 49 21.5 58 34 62C46.5 58 58.5 49 58.5 35V14C58.5 14 47.5 7 34 7Z" stroke="url(#goldGradient)" stroke-width="2.5" fill="none"/>
+    
+    <!-- Open Book & Sun Emblem -->
+    <!-- Sun Rays -->
+    <circle cx="34" cy="24" r="8" fill="#FEF08A" opacity="0.9"/>
+    <!-- Graduation Cap / Torch -->
+    <path d="M34 16L48 23L34 30L20 23L34 16Z" fill="#FFFFFF"/>
+    <path d="M25 26.5V32C25 34.5 29 36 34 36C39 36 43 34.5 43 32V26.5" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+    <!-- Tassel -->
+    <path d="M44 24.5V32" stroke="#F59E0B" stroke-width="1.5"/>
+    <circle cx="44" cy="33" r="1.5" fill="#F59E0B"/>
+
+    <!-- Open Book -->
+    <path d="M22 44C27 42 34 44 34 44C34 44 41 42 46 44V51C41 49 34 51 34 51C34 51 27 49 22 51V44Z" fill="#FFFFFF" opacity="0.95"/>
+    <path d="M34 44V51" stroke="#1D4ED8" stroke-width="1.5"/>
+  </g>
+
+  <!-- Typography: Main NHITM Title -->
+  <text x="82" y="38" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" letter-spacing="1">
+    NHITM
+  </text>
+  
+  <!-- Department Badge Pill -->
+  <rect x="194" y="16" width="118" height="24" rx="6" fill="#2563EB" opacity="0.25" stroke="#3B82F6" stroke-width="1"/>
+  <text x="253" y="32" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="700" font-size="11" fill="#60A5FA" text-anchor="middle">
+    ENGINEERING
+  </text>
+
+  <!-- Subtitle Text -->
+  <text x="82" y="55" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="600" font-size="10.5" fill="#94A3B8" letter-spacing="0.3">
+    NEW HORIZON INSTITUTE OF
+  </text>
+  <text x="82" y="68" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="600" font-size="10.5" fill="#94A3B8" letter-spacing="0.3">
+    TECHNOLOGY &amp; MANAGEMENT
+  </text>
+</svg>

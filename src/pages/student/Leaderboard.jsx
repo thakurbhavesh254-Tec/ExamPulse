@@ -46,82 +46,119 @@ export const Leaderboard = () => {
   const remaining = leaderboard.slice(3);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* Header */}
-      <div className="text-center max-w-2xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold mb-3">
-          <Trophy className="w-3.5 h-3.5 text-amber-600" />
-          <span>Academic Honor Roll &bull; 6th Semester</span>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      {/* Top Header with NHITM College Branding Logo */}
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-slate-200/80">
+        {/* Top-Left Official NHITM College Logo Container */}
+        <div className="bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-slate-200/90 shadow-md flex items-center gap-3">
+          <img
+            src="/assets/nhitm-official-logo.png"
+            alt="New Horizon Institute of Technology & Management (NHITM)"
+            className="h-12 sm:h-14 w-auto object-contain pointer-events-none rounded-lg"
+          />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          Departmental Examination Leaderboard
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-500 mt-2">
-          Recognizing consistent academic excellence across standardized university assessments and proctored examinations.
-        </p>
+
+        <div className="text-left md:text-right max-w-xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold mb-2">
+            <Trophy className="w-3.5 h-3.5 text-amber-600" />
+            <span>Academic Honor Roll &bull; 6th Semester</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Departmental Examination Leaderboard
+          </h1>
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+            Recognizing consistent academic excellence across standardized university assessments and proctored examinations.
+          </p>
+        </div>
       </div>
 
-      {/* Top 3 Podium Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end pt-4">
-        {/* Rank 2 - Silver */}
-        {topThree[1] && (
-          <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs text-center order-2 md:order-1 relative">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-slate-200 text-slate-800 text-xs font-bold px-3 py-0.5 rounded-full border border-slate-300 flex items-center gap-1 shadow-2xs">
-              <Medal className="w-3.5 h-3.5 text-slate-600" />
-              <span>Rank 2 &bull; Silver</span>
+      {/* Student Ranking Cards Grid (Top 3 + New Student Candidate Card) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch pt-4">
+        {/* Rank 1 - Gold (Valedictorian) */}
+        {topThree[0] && (
+          <div className="bg-gradient-to-b from-amber-50/70 to-white rounded-3xl border-2 border-amber-300 p-6 shadow-md text-center relative flex flex-col justify-between">
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-400 text-slate-950 text-xs font-extrabold px-3 py-0.5 rounded-full border border-amber-500 flex items-center gap-1 shadow-sm whitespace-nowrap">
+              <Trophy className="w-3.5 h-3.5 text-slate-950" />
+              <span>Rank 1 &bull; Valedictorian</span>
             </div>
-            <Avatar src={topThree[1].avatar} name={topThree[1].name} size="lg" className="mx-auto mb-3 ring-4 ring-slate-100" />
-            <h3 className="text-base font-bold text-slate-900 leading-snug">{topThree[1].name}</h3>
-            <p className="text-xs text-slate-400 font-mono mb-3">{topThree[1].rollNo}</p>
-            <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 mb-3">
-              <span className="text-2xl font-black text-slate-900 block">{topThree[1].averageScore}%</span>
-              <span className="text-[10px] text-slate-400 uppercase font-semibold">Average Accuracy</span>
+            <div>
+              <Avatar src={topThree[0].avatar} name={topThree[0].name} size="xl" className="mx-auto mb-3 ring-4 ring-amber-200" />
+              <h3 className="text-base font-bold text-slate-900 leading-snug">{topThree[0].name}</h3>
+              <p className="text-xs text-slate-500 font-mono mb-3">Roll No. {topThree[0].rollNo}</p>
+              <div className="p-3 bg-white rounded-2xl border border-amber-200 shadow-2xs mb-3">
+                <span className="text-2xl font-black text-amber-600 block">{topThree[0].averageScore}%</span>
+                <span className="text-[10px] text-slate-400 uppercase font-semibold">Top Score Distinction</span>
+              </div>
             </div>
-            <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
-              {topThree[1].badge}
+            <span className="text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-200 inline-block">
+              {topThree[0].badge}
             </span>
           </div>
         )}
 
-        {/* Rank 1 - Gold (Prominent) */}
-        {topThree[0] && (
-          <div className="bg-linear-to-b from-amber-50/70 to-white rounded-3xl border-2 border-amber-300 p-8 shadow-md text-center order-1 md:order-2 relative md:-translate-y-3">
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-400 text-slate-950 text-xs font-extrabold px-3.5 py-1 rounded-full border border-amber-500 flex items-center gap-1 shadow-sm">
-              <Trophy className="w-3.5 h-3.5 text-slate-950" />
-              <span>Rank 1 &bull; Valedictorian</span>
+        {/* Rank 2 - Silver */}
+        {topThree[1] && (
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs text-center relative flex flex-col justify-between">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-slate-200 text-slate-800 text-xs font-bold px-3 py-0.5 rounded-full border border-slate-300 flex items-center gap-1 shadow-2xs whitespace-nowrap">
+              <Medal className="w-3.5 h-3.5 text-slate-600" />
+              <span>Rank 2 &bull; Silver</span>
             </div>
-            <Avatar src={topThree[0].avatar} name={topThree[0].name} size="xl" className="mx-auto mb-3 ring-4 ring-amber-200" />
-            <h3 className="text-lg font-bold text-slate-900 leading-snug">{topThree[0].name}</h3>
-            <p className="text-xs text-slate-500 font-mono mb-4">{topThree[0].rollNo}</p>
-            <div className="p-4 bg-white rounded-2xl border border-amber-200 shadow-2xs mb-4">
-              <span className="text-3xl font-black text-amber-600 block">{topThree[0].averageScore}%</span>
-              <span className="text-[10px] text-slate-400 uppercase font-semibold">Top Score Distinction</span>
+            <div>
+              <Avatar src={topThree[1].avatar} name={topThree[1].name} size="lg" className="mx-auto mb-3 ring-4 ring-slate-100" />
+              <h3 className="text-base font-bold text-slate-900 leading-snug">{topThree[1].name}</h3>
+              <p className="text-xs text-slate-400 font-mono mb-3">Roll No. {topThree[1].rollNo}</p>
+              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 mb-3">
+                <span className="text-2xl font-black text-slate-900 block">{topThree[1].averageScore}%</span>
+                <span className="text-[10px] text-slate-400 uppercase font-semibold">Average Accuracy</span>
+              </div>
             </div>
-            <span className="text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-200">
-              {topThree[0].badge}
+            <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full inline-block">
+              {topThree[1].badge}
             </span>
           </div>
         )}
 
         {/* Rank 3 - Bronze */}
         {topThree[2] && (
-          <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs text-center order-3 md:order-3 relative">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-100 text-amber-900 text-xs font-bold px-3 py-0.5 rounded-full border border-amber-200 flex items-center gap-1 shadow-2xs">
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs text-center relative flex flex-col justify-between">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-100 text-amber-900 text-xs font-bold px-3 py-0.5 rounded-full border border-amber-200 flex items-center gap-1 shadow-2xs whitespace-nowrap">
               <Medal className="w-3.5 h-3.5 text-amber-700" />
               <span>Rank 3 &bull; Bronze</span>
             </div>
-            <Avatar src={topThree[2].avatar} name={topThree[2].name} size="lg" className="mx-auto mb-3 ring-4 ring-amber-50" />
-            <h3 className="text-base font-bold text-slate-900 leading-snug">{topThree[2].name}</h3>
-            <p className="text-xs text-slate-400 font-mono mb-3">{topThree[2].rollNo}</p>
-            <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 mb-3">
-              <span className="text-2xl font-black text-slate-900 block">{topThree[2].averageScore}%</span>
-              <span className="text-[10px] text-slate-400 uppercase font-semibold">Average Accuracy</span>
+            <div>
+              <Avatar src={topThree[2].avatar} name={topThree[2].name} size="lg" className="mx-auto mb-3 ring-4 ring-amber-50" />
+              <h3 className="text-base font-bold text-slate-900 leading-snug">{topThree[2].name}</h3>
+              <p className="text-xs text-slate-400 font-mono mb-3">Roll No. {topThree[2].rollNo}</p>
+              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 mb-3">
+                <span className="text-2xl font-black text-slate-900 block">{topThree[2].averageScore}%</span>
+                <span className="text-[10px] text-slate-400 uppercase font-semibold">Average Accuracy</span>
+              </div>
             </div>
-            <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
+            <span className="text-[11px] font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full inline-block">
               {topThree[2].badge}
             </span>
           </div>
         )}
+
+        {/* Pranali Sangle Card (Roll No. 47) */}
+        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs text-center relative flex flex-col justify-between">
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-slate-100 text-slate-700 text-xs font-bold px-3 py-0.5 rounded-full border border-slate-300 flex items-center gap-1 shadow-2xs whitespace-nowrap">
+            <GraduationCap className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Candidate &bull; Roll No. 47</span>
+          </div>
+          <div>
+            <Avatar src={null} name="Pranali Sangle" size="lg" className="mx-auto mb-3 ring-4 ring-slate-100" />
+            <h3 className="text-base font-bold text-slate-900 leading-snug">Pranali Sangle</h3>
+            <p className="text-xs text-slate-400 font-mono mb-3">Roll No. 47</p>
+            <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 mb-3">
+              <span className="text-2xl font-black text-slate-400 block">—</span>
+              <span className="text-[10px] text-slate-400 uppercase font-semibold">Average Accuracy</span>
+            </div>
+          </div>
+          <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full inline-block">
+            Not Available
+          </span>
+        </div>
       </div>
 
       {/* Complete Rankings Table */}
@@ -173,7 +210,7 @@ export const Leaderboard = () => {
                             : 'bg-slate-100 text-slate-600'
                         }`}
                       >
-                        #{entry.rank}
+                        {typeof entry.rank === 'number' ? `#${entry.rank}` : entry.rank}
                       </span>
                     </td>
 
@@ -190,7 +227,7 @@ export const Leaderboard = () => {
                             )}
                           </div>
                           <span className="text-[11px] text-slate-400 font-mono">
-                            {entry.rollNo}
+                            Roll No. {entry.rollNo}
                           </span>
                         </div>
                       </div>
@@ -201,12 +238,12 @@ export const Leaderboard = () => {
                     </td>
 
                     <td className="py-4 px-6 text-slate-900 font-semibold whitespace-nowrap">
-                      {entry.examsCompleted} completed
+                      {typeof entry.examsCompleted === 'number' ? `${entry.examsCompleted} completed` : entry.examsCompleted}
                     </td>
 
                     <td className="py-4 px-6 whitespace-nowrap">
                       <span className="text-sm font-extrabold text-slate-900">
-                        {entry.averageScore}%
+                        {typeof entry.averageScore === 'number' ? `${entry.averageScore}%` : entry.averageScore}
                       </span>
                     </td>
 

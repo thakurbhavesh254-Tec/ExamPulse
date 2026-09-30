@@ -487,6 +487,18 @@ export const INITIAL_STUDENTS = [
     lastActive: "Yesterday at 04:20 PM"
   },
   {
+    id: "std-47",
+    name: "Pranali Sangle",
+    rollNo: "47",
+    email: "pranali.sangle@nhitm.ac.in",
+    department: "Department of Information Technology",
+    semester: "6th",
+    attemptsCount: 0,
+    avgScore: "—",
+    status: "Active",
+    lastActive: "Not Available"
+  },
+  {
     id: "std-102",
     name: "Ananya Iyer",
     rollNo: "03",
@@ -725,6 +737,20 @@ export const LEADERBOARD_DATA = [
     averageScore: 92.8,
     streak: 5,
     badge: "Consistent Performer",
+    isCurrentUser: false
+  },
+  {
+    rank: "—",
+    id: "std-47",
+    name: "Pranali Sangle",
+    rollNo: "47",
+    avatar: null,
+    department: "Department of Information Technology",
+    examsCompleted: "—",
+    totalScore: "—",
+    averageScore: "—",
+    streak: 0,
+    badge: "Not Available",
     isCurrentUser: false
   },
   {
